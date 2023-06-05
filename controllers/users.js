@@ -1,7 +1,7 @@
 const usersRouter = require('express').Router();
 const User = require('../models/user');
 
-usersRouter.post('/', (request, response) => {
+usersRouter.post('/', (request, response, next) => {
     const body = request.body;
 
     const user = new User({
@@ -9,9 +9,11 @@ usersRouter.post('/', (request, response) => {
         password: body.password,
     })
 
-    user.save().then(savedUser => {
-        response.json(savedUser)
-    })
+    user.save()
+        .then(savedUser => {
+            response.json(savedUser)
+        })
+        .catch(error => next(error))
 })
 
 module.exports = usersRouter;

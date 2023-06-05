@@ -22,6 +22,6 @@ app.use(express.static('build'))
 app.use(express.json());
 app.use(middleware.requestLogger);
 app.use('/api/users', usersRouter);
-app.use(middleware.errorLogger);
+app.use(middleware.errorHandler);
 
 module.exports = app
