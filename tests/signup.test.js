@@ -4,12 +4,12 @@ const helper = require ('./test_helper')
 const app = require('../app')
 const api = supertest(app)
 const User = require('../models/user')
+const bcrypt = require('bcrypt')
 
 describe('adding user', () => {
     beforeEach(async () => {
-        await User.deleteMany({})
-        const newUser = new User(helper.initialUsers[0])
-        await newUser.save()
+        await helper.clearDB()
+        await helper.addTestUserToDB()
     })
     test('succeeds with a unique name and a password', async () => {
         const initialUsers = await helper.getUsersInDB()
