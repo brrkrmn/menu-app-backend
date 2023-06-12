@@ -11,7 +11,11 @@ const userSchema = new mongoose.Schema({
     passwordHash: {
       type: String,
       required: true,
-    }
+    },
+    menu: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Menu',
+    }]
 })
 
 userSchema.plugin(uniqueValidator)

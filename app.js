@@ -4,7 +4,9 @@ require('express-async-errors')
 const app = express();
 const cors = require('cors');
 const signupRouter = require('./controllers/signup');
-const loginRouter = require('./controllers/login')
+const loginRouter = require('./controllers/login');
+const menuRouter = require('./controllers/menuPage');
+
 const middleware = require('./utils/middleware');
 const mongoose = require('mongoose');
 
@@ -26,6 +28,7 @@ app.use(middleware.requestLogger);
 
 app.use('/api/signup', signupRouter);
 app.use('/api/login', loginRouter);
+app.use('/api/menu', menuRouter);
 
 app.use(middleware.errorHandler);
 
